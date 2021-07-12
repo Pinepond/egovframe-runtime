@@ -1,7 +1,6 @@
 language: java
 jdk:
   - openjdk8
-  - openjdk11
 
 branches:
   only:
@@ -22,14 +21,12 @@ addons:
   sonarcloud:
     organization: "pinepond"
     token:
-      secure: "D9ZecYgZD+g7kIQPeYYmBhAicvbKLV3IKNdKTyfusIiLCF0EkXUKRyQfnwaiQru9NEyJEAjv/qFTyTl/ml6GhWgTvYtvyl2KIwbcmaKMTGNwyatJkYjIvrb8+8YpCcJRtuyPLriXuM0uPoTH9XlBTZ3h124vTwHiRhPU9eK/vyGMtfzt5VZGUmDoO0DzYHZQdBXvxrQ54TWcOP6YZGW13W7L7SeUXnmD+V7R3+3UQ5UZIFKYCzZpzPJe2GS6OqVjPiXYXZ/JhKUJcHXFPYEy364DNFBH12J23lziMqtD8AXJ7No4R/mpfugDRDhLbs7Dt7aA/zcCu/xjNaOChE/iAEMvwjbvC0Ie7QzyWeGxm7Ho6lan1l73DDFloeMl5MazAWVeQleuDyqQnNztVmpEwxlGevRC5g01jT9hOy1HjmQ6GSojI2pZmcN1rhVOE1jswlZ07O2pOG8K1dQulSbDljAbxpaYcZz99QSsCEBpefNogqgL+rdHQ/7Pp/gVqGw3/z4zB3kFmpk5Pq9HjcOj3yi1jzF9V99VZA15+X3N68iwdZ8ubP9BuJvQoxR5msR2st3B0NnfAfZNCJUHpjtYGbzGynWxGRXh35dzy9PPOg54Yoh1TOFAkEa1UYp93HEeggu+4VpLNv7eEfJhIfMBRoKJkAJaMDSRyNfBNTgJp1M=" # encrypted value of your token
+      secure: "SA76Z46k8Jr2aQlVNZYo0T8JK1+F8Rf0yfRM+ezqJ3LG9NWvFZi/4d6NgSk1WBImJBUZ+Hof4T9YJr9/coz+enxbUPePAdfX9/p2BRp4F7kfz/8PNNWsW4pS8NTj7s5lhhqLBNWGNRQH1zOhtRB4JEsX3nkyW0T3IN8wB/WHmWU6n4IRTRBfDGUlsusKNjETTuBkR/1PUpjlAxdPF2AZLjC8QwwT0PAwH7uMQOaKuEOzXD2MdD9LRCmZijNiiZ8Lp9iijCMbK/ntDJk0I8uXa7XhIX26afxXeiDTE7pgDmt5SqCEeuIKbXD22q6Iqgog8vTWy0VJeReAiFBrqfvclwdZgsqFNCHS4yhkWn8hNFhliVI3E8ikchoWu9oMW62ivup5oKQnJpfXCkVaEZ5L5s0tRqEwiSgO0TIngTIEONecCyA0TWgL80eDU4FwJodK8whrEJzbX03osLX/q+4Z8NcYzwYEcu8Kf6n64auE5IoGXui97IiDSGRnp0qB5X+ILpK/m9TTfpCQnXoZKoPCdGA6ERW0+g5DYELDtPrCOsgsMwPWgZ0ZxUfMNHdpYid/nXwkEo0JoSgEZFJSdQ0sEJWsjTNubiFYg4QOqKqykpW6saQj5fzn2EHmCUxamuKyUZhNNFh44wikdMkB2j6by8IldeP1qZ5usaR5OnRLwNw="
 
 script:
-  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - jdk_switcher use openjdk8
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
   - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
   - chmod +x $TRAVIS_BUILD_DIR/install-jdk.sh
   - export JAVA_HOME=$HOME/openjdk11
   - $TRAVIS_BUILD_DIR/install-jdk.sh -F 11 --target $JAVA_HOME
-  - mvn sonar:sonar -Dsonar.login=0b9e5f5db5ae5ed4207950595e45a1fec955dd9a
+  - mvn sonar:sonar  -Dsonar.projectKey=Pinepond_egovframe-runtime -Dsonar.login=0b9e5f5db5ae5ed4207950595e45a1fec955dd9a
