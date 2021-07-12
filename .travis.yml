@@ -30,4 +30,4 @@ script:
   - export JAVA_HOME=$HOME/openjdk11
   - $TRAVIS_BUILD_DIR/install-jdk.sh -F 11 --target $JAVA_HOME
   - find ./ -name "%jacoco%"
-  - mvn sonar:sonar  -Dsonar.projectKey=Pinepond_egovframe-runtime -Dsonar.login=0b9e5f5db5ae5ed4207950595e45a1fec955dd9a -Dsonar.coverage.jacoco.xmlReportPaths=$(find "$(pwd)" -path '*jacoco.xml' | sed 's/.*/&/' | tr '\n' ',')
+  - mvn -B verify sonar:sonar  -Dsonar.projectKey=Pinepond_egovframe-runtime -Dsonar.login=0b9e5f5db5ae5ed4207950595e45a1fec955dd9a -Dsonar.coverage.jacoco.xmlReportPaths=$(find "$(pwd)" -path '*jacoco.xml' | sed 's/.*/&/' | tr '\n' ',')
