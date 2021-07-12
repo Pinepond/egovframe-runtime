@@ -1,5 +1,6 @@
 language: java
 jdk:
+  - openjdk8
   - openjdk11
 
 branches:
@@ -25,4 +26,7 @@ addons:
 
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.login=0b9e5f5db5ae5ed4207950595e45a1fec955dd9a
+  - jdk_switcher use openjdk8
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
+  - jdk_switcher use openjdk11
+  - mvn sonar:sonar -Dsonar.login=0b9e5f5db5ae5ed4207950595e45a1fec955dd9a
